@@ -1,4 +1,5 @@
-//establish global variables
+//Establish Global Variables
+// var imageArray = ["arrayImageOne", "arrayImageTwo", "arrayImageThree", "arrayImageFour"];
 var wins = 0;
 var losses = 0;
 var computerRandom;
@@ -9,65 +10,93 @@ var imageFourRandom;
 var imageOne =0;
 var guessTally =0;
 
-//generate random number 19-120
-var computerRandom = (Math.floor (Math.random() * ((120 - 19) + 1)) + 19);
-// console.log(computerRandom);
+//Set New Game / Random Numbers
+function newGame () {
+    imageOneRandom = (Math.floor (Math.random() * ((12 - 1) + 1)) + 1);
+    imageTwoRandom = (Math.floor (Math.random() * ((12 - 1) + 1)) + 1);
+    imageThreeRandom = (Math.floor (Math.random() * ((12 - 1) + 1)) + 1);
+    imageFourRandom = (Math.floor (Math.random() * ((12 - 1) + 1)) + 1);
+    computerRandom = (Math.floor (Math.random() * ((120 - 19) + 1)) + 19);
+    guessTally = 0;
+    $(".compGuessNum").text(computerRandom);
+    $(".playGuessNum").text(guessTally);
+}
 
-//assign random number values to images 1-12 
-//there is probably a more DRY way to do this but im just gonna get it working
-var imageOneRandom = (Math.floor (Math.random() * ((12 - 1) + 1)) + 1);
-// console.log(imageOneRandom);
-var imageTwoRandom = (Math.floor (Math.random() * ((12 - 1) + 1)) + 1);
-// console.log(imageTwoRandom);
-var imageThreeRandom = (Math.floor (Math.random() * ((12 - 1) + 1)) + 1);
-// console.log(imageThreeRandom);
-var imageFourRandom = (Math.floor (Math.random() * ((12 - 1) + 1)) + 1);
-// console.log(imageFourRandom);
+$("#htmlWinNum").text(wins);
+$("#htmlLossNum").text(losses);
 
-//click event for images
+function winner () {
+    wins++;
+    alert("You Win!");
+    newGame();
+    $("#htmlWinNum").text(wins);
+    
+}
+
+function loser () {
+    losses++;
+    alert("You Loose!");
+    newGame();
+    $("#htmlLossNum").text(losses);
+}
+
 
 $(".imgOne").on("click", function() {
-    alert("working");
+    guessTally = guessTally + imageOneRandom;
+    $(".playGuessNum").text(guessTally);
+
+    if (guessTally === computerRandom)
+    {
+        winner();
+    } else if (guessTally > computerRandom)
+    {
+        loser();
+    }
+
 });
 $(".imgTwo").on("click", function() {
-    alert("working");
+    guessTally = guessTally + imageTwoRandom;
+    $(".playGuessNum").text(guessTally);
+
+    if (guessTally === computerRandom)
+    {
+        winner();
+    } else if (guessTally > computerRandom)
+    {
+        loser();
+    }
+
 });
 $(".imgThree").on("click", function() {
-    alert("working");
+    guessTally = guessTally + imageThreeRandom;
+    
+    $(".playGuessNum").text(guessTally);
+    if (guessTally === computerRandom)
+    {
+        winner();
+    } else if (guessTally > computerRandom)
+    {
+        loser();
+    }
+
 });
 $(".imgFour").on("click", function() {
-    alert("working");
-});
-//on click add number to guess
-//if/else for win == computer guess and loss if greater
-if (guessTally === computerRandom) {
-    guessTally == 0;
-    wins++
-    alert("You Win!");
-    //something about picking new numbers
-}
-if (guessTally > computerRandom) {
-    guessTally == 0;
-    losses++
-    alert("You Lost!");
-    //something about picking new numbers
-}
-//End of the Game
-if (wins === 5) {
-    alert("Game Over! You Win!");
-    guessTally == 0;
-    losses == 0;
-    wins == 0;
-}
-if (losses == 5) {
-    alert("Game Over! You Lost!");
-    guessTally == 0;
-    losses == 0;
-    wins == 0;
-}
-//resets changes all numbers
-//copy values to html
-$(".htmlWin").append(wins);
-$(".htmlLoss").append(losses);
-$(".compGuess").append(computerRandom);
+    guessTally = guessTally + imageFourRandom;
+    
+    $(".playGuessNum").text(guessTally);
+    if (guessTally === computerRandom)
+    {
+        winner();
+    } else if (guessTally > computerRandom)
+    {
+        loser();
+    
+    }
 
+});
+
+//Print to HTML
+
+
+//Call Functions
+ newGame();
