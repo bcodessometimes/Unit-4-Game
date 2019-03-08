@@ -13,3 +13,23 @@ body {
     width: 200px;
     height: 200px;
 }
+
+.display-1 {
+    text-align: center;
+}
+.inst {
+    text-align: center;
+}
+
+.compGuess {
+    text-align: center;
+}
+.playGuess {
+    text-align: center;
+}
+.htmlWin {
+    text-align: center;
+}
+.htmlLoss {
+    text-align: center;
+}
